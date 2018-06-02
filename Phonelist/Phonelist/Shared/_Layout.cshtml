@@ -1,0 +1,26 @@
+﻿@using Phonelist.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phonelist</title>
+</head>
+<body>
+<div align="center" style="width: 60%; height: 35px; background-color: cadetblue">
+    <p style="text-align: center; color: ivory">
+        <h3 style="color: ivory">Phonelist v0.3</h3> 
+    </p>
+</div>
+
+<div align="center" style="width: 60%; height: 35px; background-color: cadetblue">
+    <p style="text-align: center; color: ivory">
+    @Html.ActionLink("Dodaj kontakt", "Add", "Person") | Szukaj
+    </p>
+</div>
+
+<div align="center" style="width: 60%; background-color: ivory">
+        @RenderBody()
+    </div>
+
+
+</body>
+</html> 

@@ -1,0 +1,47 @@
+﻿@model Phonelist.Models.PersonModel
+@{
+    ViewBag.RemoveMe = Model.ID;
+}
+<div>
+    <form action="/Person/RemoveConfirmed" method="post">
+        <table title="Czy na pewno usunąć osobę?">
+            <tr>
+                <td>ID:</td>
+                <td>@Model.ID</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>@Model.FirstName @Model.LastName</td>
+            </tr>
+            <tr>
+                <td>Phone:</td>
+                <td>@Model.Phone</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>@Model.Email</td>
+            </tr>
+            <tr>
+                <td>Created:</td>
+                <td>@Model.Created.ToString("yyyy-MM-dd HH:mm")</td>
+            </tr>
+            <tr>
+                <td>Updated:</td>
+                <td>
+                    @if (Model.Updated != null)
+                    {
+                        @Model.Updated
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Delete" />
+                </td>
+                <td>
+                    <a href="/"><input type="button" value="Back" /></a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>

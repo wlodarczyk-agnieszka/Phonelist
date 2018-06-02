@@ -1,0 +1,33 @@
+﻿@model Phonelist.Models.PersonModel
+
+    @using (Html.BeginForm("Add", "Person", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <td> @Html.LabelFor(x => x.FirstName) </td>
+                <td> @Html.TextBoxFor(x => x.FirstName) </td>
+                <td> @Html.ValidationMessageFor(x => x.FirstName) </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(x => x.LastName) </td>
+                <td> @Html.TextBoxFor(x => x.LastName) </td>
+                <td> @Html.ValidationMessageFor(x => x.LastName) </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(x => x.Phone) </td>
+                <td> @Html.TextBoxFor(x => x.Phone) </td>
+                <td> @Html.ValidationMessageFor(x => x.Phone) </td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(x => x.Email) </td>
+                <td> @Html.TextBoxFor(x => x.Email) </td>
+                <td> @Html.ValidationMessageFor(x => x.Email) </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="align: center">
+                    <input type="submit"  value="Add" />
+                </td>
+
+            </tr>
+        </table>
+    }

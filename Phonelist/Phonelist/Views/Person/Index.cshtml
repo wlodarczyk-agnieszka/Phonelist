@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Phonelist.Models.PersonModel>
+
+    @if (Model != null)
+    {
+<table>
+    <tr>
+        <td style="padding: 20px">ID</td>
+        <td style="padding: 20px">Name</td>
+        <td style="padding: 20px">Phone</td>
+        <td style="padding: 20px">Email</td>
+        <td style="padding: 20px">Created</td>
+        <td style="padding: 20px">Updated</td>
+        <td style="padding: 20px">Options</td>
+    </tr>
+    @foreach (var person in Model)
+    {
+        <tr>
+            <td>@person.ID</td>
+            <td>@person.FirstName @person.LastName</td>
+            <td>@person.Phone</td>
+            <td>@person.Email</td>
+            <td>@person.Created.ToString("yyyy-MM-dd HH:mm")</td>
+            <td>@if (person.Updated != null)
+                {
+                    @person.Updated
+                }
+               
+                </td>
+            <td>
+                Edit | <a href = "/Person/Remove/@person.ID" >Remove</a>
+            </td>
+
+</tr>
+    }
+</table>
+    }
+    else
+    {
+        <p>
+            <strong>Brak danych.</strong>
+        </p>
+    }
