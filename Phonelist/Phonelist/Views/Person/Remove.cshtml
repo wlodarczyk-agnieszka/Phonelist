@@ -1,13 +1,15 @@
 ﻿@model Phonelist.Models.PersonModel
-@{
-    ViewBag.RemoveMe = Model.ID;
-}
+
 <div>
+    <h3>Czy na pewno usunąć osobę?</h3>
     <form action="/Person/RemoveConfirmed" method="post">
-        <table title="Czy na pewno usunąć osobę?">
+        <table>
             <tr>
                 <td>ID:</td>
-                <td>@Model.ID</td>
+                <td>
+                    <input name ="id" type="text" value="@Model.ID" readonly="readonly" hidden="hidden"/>
+                    @Model.ID
+                </td>
             </tr>
             <tr>
                 <td>Name:</td>
@@ -36,10 +38,11 @@
             </tr>
             <tr>
                 <td>
-                    <input type="submit" value="Delete" />
+                    <input type="submit" value="Usuń" class="btn btn-primary" />
+                   
                 </td>
                 <td>
-                    <a href="/"><input type="button" value="Back" /></a>
+                    <a href="/" type="button" class="btn"> Wróć </a>
                 </td>
             </tr>
         </table>

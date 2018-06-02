@@ -2,16 +2,16 @@
 
     @if (Model != null)
     {
-<table>
-    <tr>
-        <td style="padding: 20px">ID</td>
-        <td style="padding: 20px">Name</td>
-        <td style="padding: 20px">Phone</td>
-        <td style="padding: 20px">Email</td>
-        <td style="padding: 20px">Created</td>
-        <td style="padding: 20px">Updated</td>
-        <td style="padding: 20px">Options</td>
-    </tr>
+<table class="table">
+    <thead>
+        <th >ID</th>
+        <th >Name</th>
+        <th >Phone</th>
+        <th >Email</th>
+        <th >Created</th>
+        <th >Updated</th>
+        <th >Options</th>
+    </thead>
     @foreach (var person in Model)
     {
         <tr>
@@ -27,7 +27,7 @@
                
                 </td>
             <td>
-                Edit | <a href = "/Person/Remove/@person.ID" >Remove</a>
+                Edit | <a href="/Person/Remove/@person.ID" class="btn btn-link" role="link">Usuń</a>
             </td>
 
 </tr>

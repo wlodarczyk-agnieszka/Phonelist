@@ -1,0 +1,7 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model string
+
+<form asp-action="Search" method="get">
+    <input name="searchText" type="text" class="form-control" placeholder="Szukaj..." />
+    <input type="submit" value="Szukaj" />
+</form>

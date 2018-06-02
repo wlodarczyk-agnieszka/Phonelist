@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,15 +14,23 @@ namespace Phonelist.Models
         public int ID { get; set; }
 
         [Required]
+        [DisplayName("Imię")]
+        [MinLength(3)]
         public string FirstName { get; set; }
+
+        [DisplayName("Nazwisko")]
+        [MinLength(3)]
         public string LastName { get; set; }
 
         [Required]
         [MaxLength(30)]
+        [DisplayName("Telefon")]
         public string Phone { get; set; }
 
         [EmailAddress]
+        [DisplayName("E-mail")]
         public string Email { get; set; }
+
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
 

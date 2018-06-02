@@ -70,7 +70,7 @@ namespace Phonelist
                 var command = new SqlCommand();
 
                 command.Parameters.Clear();
-                command.CommandText = "SELECT ID, FirstName, LastName, Phone, Email FROM People WHERE ID = @id;";
+                command.CommandText = "SELECT ID, FirstName, LastName, Phone, Email, Created, Updated FROM People WHERE ID = @id;";
                 command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int) {Value = id});
                 command.Connection = connection;
                 connection.Open();
@@ -81,7 +81,13 @@ namespace Phonelist
                 {
                     reader.Read();
 
-                    var person = new PersonModel(Convert.ToInt32(reader["ID"]), reader["FirstName"].ToString(), reader["LastName"].ToString(), reader["Phone"].ToString(), reader["Email"].ToString());
+                    DateTime? updated = null;
+                    if (reader["Updated"].ToString() != "")
+                    {
+                        updated = Convert.ToDateTime(reader["Updated"].ToString());
+                    }
+
+                    var person = new PersonModel(Convert.ToInt32(reader["ID"]), reader["FirstName"].ToString(), reader["LastName"].ToString(), reader["Phone"].ToString(), reader["Email"].ToString(), Convert.ToDateTime(reader["Created"]), updated);
 
                     return person;
                 }

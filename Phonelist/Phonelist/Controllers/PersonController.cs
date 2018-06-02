@@ -7,15 +7,22 @@ using Phonelist.Models;
 
 namespace Phonelist.Controllers
 {
+    /*TODO:
+     - Wyszukiwarka (najchetniej jako partial view?)
+     - Edycja osób
+     - Paginacja
+     - Poprawić wygląd
+     - Dodać stopkę?
+    */ 
+
+
+
     public class PersonController : Controller
     {
         SourceManager _sourceManager = new SourceManager();
 
         public IActionResult Index()
         {
-            //TODO: stronicowanie
-
-
             var personsList = _sourceManager.Get(1, 50);
 
             return View(personsList);
@@ -46,17 +53,22 @@ namespace Phonelist.Controllers
         public IActionResult Remove(int id)
         {
             var removeMe = _sourceManager.GetByID(id);
-
+            
             return View(removeMe);
         }
 
         [HttpPost]
-        public IActionResult RemoveConfirmed(int id)
+        public IActionResult RemoveConfirmed(PersonModel model)
         {
-            
-           _sourceManager.Remove(id);
+            _sourceManager.Remove(model.ID);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Search(string searchText)
+        {
+            return Content($"Jeszcze nie działa. Próbujesz wyszukać: {searchText}");
         }
     }
 }

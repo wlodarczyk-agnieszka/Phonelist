@@ -1,33 +1,32 @@
 ﻿@model Phonelist.Models.PersonModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-    @using (Html.BeginForm("Add", "Person", FormMethod.Post))
-    {
-        <table>
-            <tr>
-                <td> @Html.LabelFor(x => x.FirstName) </td>
-                <td> @Html.TextBoxFor(x => x.FirstName) </td>
-                <td> @Html.ValidationMessageFor(x => x.FirstName) </td>
-            </tr>
-            <tr>
-                <td> @Html.LabelFor(x => x.LastName) </td>
-                <td> @Html.TextBoxFor(x => x.LastName) </td>
-                <td> @Html.ValidationMessageFor(x => x.LastName) </td>
-            </tr>
-            <tr>
-                <td> @Html.LabelFor(x => x.Phone) </td>
-                <td> @Html.TextBoxFor(x => x.Phone) </td>
-                <td> @Html.ValidationMessageFor(x => x.Phone) </td>
-            </tr>
-            <tr>
-                <td> @Html.LabelFor(x => x.Email) </td>
-                <td> @Html.TextBoxFor(x => x.Email) </td>
-                <td> @Html.ValidationMessageFor(x => x.Email) </td>
-            </tr>
-            <tr>
-                <td colspan="3" style="align: center">
-                    <input type="submit"  value="Add" />
-                </td>
+<H3>Podaj dane:</H3>
+<form asp-action="Add" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" type="text" class="form-control" style="width: 50%" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
 
-            </tr>
-        </table>
-    }
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" type="text" class="form-control" style="width: 50%" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" type="text" class="form-control" style="width: 50%" />
+        <span asp-validation-for="Phone"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="text" class="form-control" style="width: 50%" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <input type="submit" value="Dodaj" class="btn btn-primary" />
+    <a href="/" type="button" class="btn"> Wróć </a>
+
+</form>
