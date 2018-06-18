@@ -30,9 +30,11 @@ namespace Phonelist
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(name: "default", template: "{controller=Person}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default1", template: "{page}", defaults: new { controller = "Person", action = "Index" });
 
                 routes.MapRoute(name: "default2", template: "{controller=Person}/{action=Index}/{page?}");
+                
+                routes.MapRoute(name: "default3", template: "{controller=Person}/{action=Index}/{id?}");
 
                 //routes.MapRoute(name: "default3", template: "{id?}", defaults: new { controller = "Home", action = "Index" });
             });

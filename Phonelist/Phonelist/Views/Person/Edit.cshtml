@@ -1,0 +1,39 @@
+﻿@model Phonelist.Models.PersonModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<H3>Zmień dane</H3>
+<form asp-action="EditUpdate" method="post">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input asp-for="FirstName" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.FirstName)" />
+        <span asp-validation-for="FirstName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input asp-for="LastName" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.LastName)" />
+        <span asp-validation-for="LastName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone"></label>
+        <input asp-for="Phone" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.Phone)" />
+        <span asp-validation-for="Phone"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.Email)" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    
+   
+        <input asp-for="ID" value="@Model.ID" readonly="readonly" hidden="hidden" />
+        <input asp-for="Created" value="@Model.Created" readonly="readonly" hidden="hidden" />
+        <input asp-for="Updated" value="@Model.Updated" readonly="readonly" hidden="hidden" />
+   
+
+    <input type="submit" value="Zapisz" class="btn btn-primary" />
+    <a href="/" type="button" class="btn"> Wróć </a>
+
+</form>

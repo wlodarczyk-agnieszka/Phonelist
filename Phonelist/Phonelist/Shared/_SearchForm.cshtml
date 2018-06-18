@@ -1,7 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model string
-
-<form asp-action="Search" method="get">
+    <p>Czego szukasz? Podaj imię, nazwisko, telefon lub email (lub fragment któregoś z nich)</p>
+<form asp-action="Search" method="post" class="form-inline">
     <input name="searchText" type="text" class="form-control" placeholder="Szukaj..." />
-    <input type="submit" value="Szukaj" />
+    <input type="submit" value="Szukaj" class="btn btn-primary" />
 </form>

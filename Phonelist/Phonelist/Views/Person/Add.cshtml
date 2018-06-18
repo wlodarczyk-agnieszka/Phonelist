@@ -1,7 +1,7 @@
 ﻿@model Phonelist.Models.PersonModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-<H3>Podaj dane:</H3>
+<H3>Podaj dane</H3>
 <form asp-action="Add" method="post">
     <div class="form-group">
         <label asp-for="FirstName"></label>
@@ -26,6 +26,7 @@
         <input asp-for="Email" type="text" class="form-control" style="width: 50%" />
         <span asp-validation-for="Email"></span>
     </div>
+    
     <input type="submit" value="Dodaj" class="btn btn-primary" />
     <a href="/" type="button" class="btn"> Wróć </a>
 
