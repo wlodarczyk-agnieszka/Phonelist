@@ -36,7 +36,8 @@ namespace Phonelist
                 
                 routes.MapRoute(name: "default3", template: "{controller=Person}/{action=Index}/{id?}");
 
-                //routes.MapRoute(name: "default3", template: "{id?}", defaults: new { controller = "Home", action = "Index" });
+                routes.MapRoute(name: "default4", template: "{controller=Person}/{action=Edit}/{id}");
+
             });
         }
     }

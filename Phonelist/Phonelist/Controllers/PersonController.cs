@@ -7,12 +7,6 @@ using Phonelist.Models;
 
 namespace Phonelist.Controllers
 {
-    /*TODO:
- 
-     - Paginacja
-
-    */
-
 
     public class PersonController : Controller
     {
@@ -22,16 +16,17 @@ namespace Phonelist.Controllers
 
         public IActionResult Index(int page = 1)
         {
-            ViewBag.SearchText = "";
-
+            
             int records = _sourceManager.NumberOfRecords();
             int pages = (int)Math.Ceiling((double)(records / RecordsPerPage));
             ViewBag.Pages = pages;
             ViewBag.ActualPage = page;
 
-            int start = (RecordsPerPage * page) - (RecordsPerPage - 1); 
-            
-            var personsList = _sourceManager.Get(start, RecordsPerPage);
+            var personListAll = _sourceManager.Get(1, records);
+
+            int skip = page == 1 ? 0 : (RecordsPerPage * page);
+
+            IEnumerable<PersonModel> personsList = personListAll.Skip(skip).Take(RecordsPerPage);
 
             return View(personsList);
         }
@@ -74,24 +69,17 @@ namespace Phonelist.Controllers
         }
 
         [HttpGet]
-        public IActionResult Search()
-        {
-            return View("/Shared/_SearchForm.cshtml");
-        }
-
-        [HttpPost]
         public IActionResult Search(string searchText)
         {
             var results = _sourceManager.Search(searchText);
 
             if (results != null)
             {
-                ViewBag.SearchText = $"Wyniki dla \"{searchText}\"";
+                ViewBag.SearchText = searchText;
                 return View("Index", results);
             }
             else
             {
-                //return RedirectToAction("Index");
                 return View("Info", "Brak wyników");
             }
         }
@@ -109,7 +97,7 @@ namespace Phonelist.Controllers
             if (ModelState.IsValid)
             {
                 _sourceManager.Update(model);
-                return RedirectToAction("Index");
+                return Redirect("Index");
             }
             else
             {

@@ -2,7 +2,7 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <H3>Zmień dane</H3>
-<form asp-action="EditUpdate" method="post">
+<form asp-action="EditUpdate" asp-controller="Person" method="post">
     <div class="form-group">
         <label asp-for="FirstName"></label>
         <input asp-for="FirstName" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.FirstName)" />
@@ -35,5 +35,5 @@
 
     <input type="submit" value="Zapisz" class="btn btn-primary" />
     <a href="/" type="button" class="btn"> Wróć </a>
-
+    
 </form>

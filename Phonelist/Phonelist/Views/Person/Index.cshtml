@@ -1,16 +1,17 @@
 ﻿@model IEnumerable<Phonelist.Models.PersonModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @if (Model != null)
 {
     <table class="table">
         <thead>
         <th>ID</th>
-        <th>Name</th>
-        <th>Phone</th>
+        <th>Imię i nazwisko</th>
+        <th>Telefon</th>
         <th>Email</th>
-        <th>Created</th>
-        <th>Updated</th>
-        <th>Options</th>
+        <th>Utworzono</th>
+        <th>Aktualizacja</th>
+        <th>Opcje</th>
         </thead>
         @foreach (var person in Model)
         {
@@ -26,21 +27,21 @@
                         @person.Updated
                     }
 
-            </td>
-            <td>
-                <a href="/Person/Edit/@person.ID" class="btn btn-link" role="link">Edytuj</a> |
-                <a href="/Person/Remove/@person.ID" class="btn btn-link" role="link">Usuń</a>
-            </td>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Person" asp-route-id="@person.ID" class="btn btn-link" role="link">Edytuj</a> |
+                    <a asp-action="Remove" asp-controller="Person" asp-route-id="@person.ID" class="btn btn-link" role="link">Usuń</a>
+                </td>
 
-        </tr>
-    }
+            </tr>
+        }
     </table>
     <div align="center">
         @for (int i = 1; i <= ViewBag.Pages; i++)
         {
             if (i == ViewBag.ActualPage)
             {
-                <strong>@i </strong>
+                 <strong>@i</strong> 
             }
             else
             {

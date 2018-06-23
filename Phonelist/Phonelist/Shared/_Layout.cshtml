@@ -1,4 +1,5 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,15 +10,20 @@
 
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-10" style="background-color:white" align="center"> <h2>Książka telefoniczna</h2> </div>
+        <div class="col-sm-10" style="background-color:white" align="center"> <h2>Książka telefoniczna</h2><br /><hr /> </div>
         <div class="col-sm-1"></div>
     </div>
 
     <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-3" style="background-color: white"> <a href="/Person/Add" class="btn btn-primary" role="button">Dodaj osobę</a> </div>
-        <div class="col-sm-3" style="background-color: white"> <a href="/Person/Search" class="btn btn-primary" role="button">Szukaj</a> @ViewBag.SearchText </div>
-        <div class="col-sm-4" style="background-color: white"> <a href="/" class="btn btn-primary" role="button">Pokaż wszystko</a> </div>
+        <div class="col-sm-3" style="background-color: white"> <a asp-action="Add" asp-controller="Person" class="btn btn-primary" role="button">Dodaj osobę</a> </div>
+        <div class="col-sm-3" style="background-color: white">
+            <form asp-action="Search" method="get" class="form-inline">
+                <input name="searchText" type="text" value="@ViewBag.Searchtext" class="form-control" placeholder="Szukaj..." />
+                <input type="submit" value="Szukaj" class="btn btn-primary" />
+            </form>
+        </div>
+        <div class="col-sm-4" style="background-color: white"> <a href="/" class="btn btn-primary" role="button">Pokaż wszystko</a></div>
         <div class="col-sm-1"></div>
     </div>
 

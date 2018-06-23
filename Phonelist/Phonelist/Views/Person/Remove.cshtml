@@ -1,22 +1,23 @@
 ﻿@model Phonelist.Models.PersonModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 <div>
     <h3>Czy na pewno usunąć osobę?</h3>
-    <form action="/Person/RemoveConfirmed" method="post">
+    <form asp-action="RemoveConfirmed" asp-controller="Person" method="post">
         <table>
             <tr>
                 <td>ID:</td>
                 <td>
-                    <input name ="id" type="text" value="@Model.ID" readonly="readonly" hidden="hidden"/>
                     @Model.ID
+                    <input name="id" type="text" value="@Model.ID" readonly="readonly" hidden="hidden" />
                 </td>
             </tr>
             <tr>
-                <td>Name:</td>
+                <td>Osoba:</td>
                 <td>@Model.FirstName @Model.LastName</td>
             </tr>
             <tr>
-                <td>Phone:</td>
+                <td>Telefon:</td>
                 <td>@Model.Phone</td>
             </tr>
             <tr>
@@ -24,11 +25,11 @@
                 <td>@Model.Email</td>
             </tr>
             <tr>
-                <td>Created:</td>
+                <td>Utworzono:</td>
                 <td>@Model.Created.ToString("yyyy-MM-dd HH:mm")</td>
             </tr>
             <tr>
-                <td>Updated:</td>
+                <td>Aktualizacja:</td>
                 <td>
                     @if (Model.Updated != null)
                     {
