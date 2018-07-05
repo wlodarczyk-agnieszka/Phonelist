@@ -5,32 +5,32 @@
 <form asp-action="EditUpdate" asp-controller="Person" method="post">
     <div class="form-group">
         <label asp-for="FirstName"></label>
-        <input asp-for="FirstName" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.FirstName)" />
+        <input asp-for="FirstName" type="text" class="form-control" style="width: 50%" />
         <span asp-validation-for="FirstName"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="LastName"></label>
-        <input asp-for="LastName" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.LastName)" />
+        <input asp-for="LastName" type="text" class="form-control" style="width: 50%" />
         <span asp-validation-for="LastName"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Phone"></label>
-        <input asp-for="Phone" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.Phone)" />
+        <input asp-for="Phone" type="text" class="form-control" style="width: 50%" />
         <span asp-validation-for="Phone"></span>
     </div>
 
     <div class="form-group">
         <label asp-for="Email"></label>
-        <input asp-for="Email" type="text" class="form-control" style="width: 50%" value="@(Model == null ? "" : Model.Email)" />
+        <input asp-for="Email" type="text" class="form-control" style="width: 50%" />
         <span asp-validation-for="Email"></span>
     </div>
     
    
-        <input asp-for="ID" value="@Model.ID" readonly="readonly" hidden="hidden" />
-        <input asp-for="Created" value="@Model.Created" readonly="readonly" hidden="hidden" />
-        <input asp-for="Updated" value="@Model.Updated" readonly="readonly" hidden="hidden" />
+        <input asp-for="ID" readonly="readonly" hidden="hidden" />
+        <input asp-for="Created" readonly="readonly" hidden="hidden" />
+        <input asp-for="Updated" readonly="readonly" hidden="hidden" />
    
 
     <input type="submit" value="Zapisz" class="btn btn-primary" />

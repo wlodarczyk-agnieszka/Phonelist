@@ -22,11 +22,11 @@ namespace Phonelist.Controllers
             ViewBag.Pages = pages;
             ViewBag.ActualPage = page;
 
-            var personListAll = _sourceManager.Get(1, records);
-
             int skip = page == 1 ? 0 : (RecordsPerPage * page);
 
-            IEnumerable<PersonModel> personsList = personListAll.Skip(skip).Take(RecordsPerPage);
+            var personsList = _sourceManager.Get(skip, RecordsPerPage);
+
+            //IEnumerable<PersonModel> personsList = personListAll.Skip(skip).Take(RecordsPerPage);
 
             return View(personsList);
         }
@@ -73,7 +73,7 @@ namespace Phonelist.Controllers
         {
             var results = _sourceManager.Search(searchText);
 
-            if (results != null)
+            if (results.Count > 0)
             {
                 ViewBag.SearchText = searchText;
                 return View("Index", results);
@@ -88,7 +88,15 @@ namespace Phonelist.Controllers
         public IActionResult Edit(int id)
         {
             var editMe = _sourceManager.GetByID(id);
-            return View("Edit", editMe);
+
+            if (editMe != null)
+            {
+                return View("Edit", editMe);
+            }
+            else
+            {
+                return View("Info", "Brak osoby o podanym ID.");
+            }
         }
 
         [HttpPost]

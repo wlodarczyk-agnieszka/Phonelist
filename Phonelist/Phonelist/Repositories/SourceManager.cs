@@ -15,21 +15,22 @@ namespace Phonelist
                                     "User id=sa;" + "Password=Test2010;";
 
 
-        public List<PersonModel> Get(int start, int take)
+        public List<PersonModel> Get(int skip, int take)
         {
             // metoda powinna zwracać listę obiektów z bazy zaczynającą się od podanego numeru wiersza. 
             // Długość listy określa drugi parametr
 
-            List<PersonModel> Persons = new List<PersonModel>();
+            List<PersonModel> persons = new List<PersonModel>();
 
             using (var connection = new SqlConnection(connString))
             {
                 var command = new SqlCommand();
 
                 command.Parameters.Clear();
-                command.CommandText = "SELECT ID, FirstName, LastName, Phone, Email, Created, Updated FROM People WHERE ID >= @start AND ID <= @stop;";
-                command.Parameters.Add(new SqlParameter("@start", SqlDbType.Int) { Value = start });
-                command.Parameters.Add(new SqlParameter("@stop", SqlDbType.Int) { Value = start + take-1 });
+                //command.CommandText = "SELECT ID, FirstName, LastName, Phone, Email, Created, Updated FROM People WHERE ID >= @start AND ID <= @stop;";
+                command.CommandText = "SELECT ID, FirstName, LastName, Phone, Email, Created, Updated FROM People ORDER BY 1 OFFSET @skip ROWS FETCH NEXT @take ROWS ONLY; ";
+                command.Parameters.Add(new SqlParameter("@skip", SqlDbType.Int) { Value = skip });
+                command.Parameters.Add(new SqlParameter("@take", SqlDbType.Int) { Value = take });
                 command.Connection = connection;
                 connection.Open();
 
@@ -47,18 +48,20 @@ namespace Phonelist
 
                         var person = new PersonModel(Convert.ToInt32(reader["ID"]), reader["FirstName"].ToString(), reader["LastName"].ToString(), reader["Phone"].ToString(), reader["Email"].ToString(), Convert.ToDateTime(reader["Created"]), updated);
 
-                        Persons.Add(person);
+                        persons.Add(person);
                     }
 
                     connection.Close();
-                    return Persons;
+                    return persons;
                     
                 }
 
             }
 
         
-            return null;
+            //return null;
+            // w przypadku braku rekordów zwraca pusta liste
+            return persons;
         }
 
         public PersonModel GetByID(int id)
@@ -91,11 +94,12 @@ namespace Phonelist
 
                     return person;
                 }
+                else
+                {
+                    return null;
+                }
 
             }
-
-            return null;
-
         }
 
         public int Add(PersonModel personModel)
@@ -121,9 +125,6 @@ namespace Phonelist
 
             }
 
-            return -1;
-
-           
         }
 
         public void Update(PersonModel personModel)
@@ -172,7 +173,7 @@ namespace Phonelist
 
         public List<PersonModel> Search(string searchText)
         {
-            List<PersonModel> Persons = new List<PersonModel>();
+            List<PersonModel> persons = new List<PersonModel>();
 
             using (var connection = new SqlConnection(connString))
             {
@@ -198,17 +199,18 @@ namespace Phonelist
 
                         var person = new PersonModel(Convert.ToInt32(reader["ID"]), reader["FirstName"].ToString(), reader["LastName"].ToString(), reader["Phone"].ToString(), reader["Email"].ToString(), Convert.ToDateTime(reader["Created"]), updated);
 
-                        Persons.Add(person);
+                        persons.Add(person);
                     }
 
                     connection.Close();
-                    return Persons;
+                    return persons;
 
                 }
                 else
                 {
                     connection.Close();
-                    return null;
+                    // brak rekordow -> zwracamy pusta kolekcje
+                    return persons;
                 }
 
             }
