@@ -10,6 +10,3 @@
 - .Net Core 2.0 MVC
 - SqlClient (library to connect to database - SQL Server)
 - Bootstrap 3
-
-#### Screenshots:
-comming soon
